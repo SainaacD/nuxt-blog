@@ -1,9 +1,9 @@
 <template>
-  <section class="container">
+  <section class="index">
     <div class="card-wrap">
       <Card v-for="(item, index) in blogs" :key="`card-${index}`" :title="item.title" :detail="item.detail" :like="item.like" :comment="item.comment" :time="item.time"/>
     </div>
-    <Action :data="action" :choose="choose" @action="change"/>
+    <Action :data="action" :choose="choose"/>
   </section>
 </template>
 
@@ -56,45 +56,62 @@ export default {
       action: [
         {
           iconfont: true,
-          content: 'home'
+          content: 'home',
+          link: 'index'
         },
         {
           iconfont: true,
-          content: 'tags'
+          content: 'tags',
+          link: 'tags'
         },
         {
           iconfont: true,
-          content: 'plus icon-special'
+          content: 'plus icon-special',
+          link: 'add'
         },
         {
           iconfont: true,
-          content: 'search'
+          content: 'search',
+          link: 'search'
         },
         {
           iconfont: true,
-          content: 'user'
+          content: 'user',
+          link: 'user'
         }
       ]
     }
   },
   methods: {
-    change(index) {
-      this.$store.commit('action/change', index)
-    }
   }
 }
 </script>
 
 <style>
-.container {
+.index {
   min-height: 100vh;
+  background: #f5f5f5;
+  overflow: auto;
+}
+.index-title {
+  margin: 0 10px;
+  padding: 0;
+  font-size: 20px;
+  line-height: 3;
+  color: #4dd0e1;
+}
+.choose-wrap {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  text-align: center;
+  flex-flow: row nowrap;
 }
 .card-wrap {
   padding-bottom: 40px;
   width: 100%;
+}
+.card-wrap .card:nth-child(2n) {
+  transform:  skewX(2deg);
+}
+.card-wrap .card:nth-child(2n+1) {
+  transform:  skewX(-2deg);
 }
 </style>

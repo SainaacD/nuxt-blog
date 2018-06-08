@@ -1,6 +1,6 @@
 <template>
   <article class="card">
-    <h2 class="card-title">{{title}}</h2>
+    <h3 class="card-title">{{title}}</h3>
     <p class="card-detail">{{detail}}</p>
     <div class="card-bottom">
       <div class="card-bottom-item">
@@ -57,12 +57,13 @@ export default {
   .card {
     display: flex;
     flex-flow: column nowrap;
-    width: 100%;
-    padding: 20px;
     justify-content: flex-start;
     align-items: flex-start;
+    margin: 4px 6px;
+    padding: 14px 20px;
     text-align: left;
-    border-bottom: 1px solid #f5f5f5;
+    background: #fff;
+    border-radius: 8px;
   }
   .card-title {
     font-size: 18px;
@@ -82,6 +83,6 @@ export default {
     width: 100%;
     font-size: 16px;
     line-height: 1.5;
-    color: #999;
+    color: #ccc;
   }
 </style>

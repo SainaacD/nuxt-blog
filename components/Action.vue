@@ -1,6 +1,6 @@
 <template>
   <section class="action">
-    <div v-for="(item, index) in data" :key="`action-${index}`" :class="index===choose?'action-btn-active':''" @click="action(index)" class="action-btn">
+    <div v-for="(item, index) in data" :key="`action-${index}`" :class="index===choose?'action-btn-active':''" @click="action(index, item.link)" class="action-btn">
       <i v-if="item.iconfont" class="icon iconfont" :class="`icon-${item.content}`"></i>
       <span v-else>{{item.content}}</span>
     </div>
@@ -24,31 +24,38 @@ export default {
       // data: [
       //   {
       //     iconfont: true,
-      //     content: 'home'
+      //     content: 'home',
+      //     link: 'index'
       //   },
       //   {
       //     iconfont: true,
-      //     content: 'tags'
+      //     content: 'tags',
+      //     link: 'tags'
       //   },
       //   {
       //     iconfont: true,
-      //     content: 'plus icon-special'
+      //     content: 'plus icon-special',
+      //     link: 'add'
       //   },
       //   {
       //     iconfont: true,
-      //     content: 'search'
+      //     content: 'search',
+      //     link: 'search'
       //   },
       //   {
       //     iconfont: true,
-      //     content: 'user'
+      //     content: 'user',
+      //     link: 'user'
       //   }
       // ]
     }
   },
   methods: {
-    action(index) {
-      this.$emit('action', index)
-      console.log(index)
+    action(index, link) {
+      this.$store.commit('action/change', index)
+      this.$router.push({
+        name: link
+      })
     }
   }
 }
@@ -69,6 +76,7 @@ export default {
   box-shadow: -1px 0 1px 1px #f5f5f5;
 }
 .action-btn {
+  text-decoration: none;
   flex: 1;
 }
 .action-btn .icon {
@@ -77,12 +85,12 @@ export default {
   color: #999;
 }
 .action-btn-active .icon {
-  color: #666;
+  color: #4dd0e1;
 }
 .action-btn .icon-special {
   padding: 4px;
   color: #fff;
-  background: #666;
+  background: #4dd0e1;
   border-radius: 100%;
 }
 </style>
